@@ -190,7 +190,7 @@ class PEHeaderReader
                 //csv 저장
                 optionalData64.AddRange(new string[] {
                     $"{optionalHeader.Magic}", $"{optionalHeader.MajorLinkerVersion}", $"{optionalHeader.MinorLinkerVersion}", $"{optionalHeader.SizeOfCode}", $"{optionalHeader.SizeOfInitializedData}", $"{optionalHeader.SizeOfUninitializedData}",
-                    $"{optionalHeader.AddressOfEntryPoint}", $"{optionalHeader.BaseOfCode}", $"{optionalHeader.ImageBase}", $"{optionalHeader.SectionAlignment}", $"{optionalHeader.FileAlignment}", $"{optionalHeader.MajorOperatingSystemVersion}", 
+                    $"{optionalHeader.AddressOfEntryPoint}", $"{optionalHeader.BaseOfCode}", $"{null}" , $"{optionalHeader.ImageBase}", $"{optionalHeader.SectionAlignment}", $"{optionalHeader.FileAlignment}", $"{optionalHeader.MajorOperatingSystemVersion}", 
                     $"{optionalHeader.MinorOperatingSystemVersion}", $"{optionalHeader.MajorImageVersion}", $"{optionalHeader.MinorImageVersion}", $"{optionalHeader.MajorSubsystemVersion}", $"{optionalHeader.MinorSubsystemVersion}", 
                     $"{optionalHeader.Win32VersionValue}", $"{optionalHeader.SizeOfImage}", $"{optionalHeader.SizeOfHeaders}", $"{optionalHeader.CheckSum}", $"{optionalHeader.Subsystem}", $"{optionalHeader.DllCharacteristics}", $"{optionalHeader.SizeOfStackReserve}",
                     $"{optionalHeader.SizeOfStackCommit}", $"{optionalHeader.SizeOfHeapReserve}", $"{optionalHeader.SizeOfHeapCommit}", $"{optionalHeader.LoaderFlags}", $"{optionalHeader.NumberOfRvaAndSizes}"
