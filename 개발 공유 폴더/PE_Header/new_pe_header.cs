@@ -95,27 +95,30 @@ class PEHeaderReader
 
     static void Main(string[] args) {
 
-        //드라이브 검색
-        string targetDirectory = @"D:\";
-        string outputCsv = "pe_info.csv";
-        List<string[]> csvData = new List<string[]>();
+        //A-Z드라이브 검색 
+        for (char i = 'A'; i <= 'Z'; i++){
+            string targetDirectory = $@"{i}:\";
+            string outputCsv = "pe_info.csv";
+            List<string[]> csvData = new List<string[]>();
 
-        Console.WriteLine("PE 파일 검색 중...");
+            Console.WriteLine("PE 파일 검색 중...");
 
-        foreach (string file in GetFilesSafely(targetDirectory, new[] { "*.exe", "*.dll" , "*.scr", "*.sys", "*.vxd", "*.ocx", "*.cpl", "*.drv", "*.obj"})) {
-            try {
-                Console.WriteLine($"분석 중: {file}");
-                var peInfo = ReadPEHeader(file);
-                if (peInfo != null) {
-                    csvData.Add(peInfo);
+            foreach (string file in GetFilesSafely(targetDirectory, new[] { "*.exe", "*.dll" , "*.scr", "*.sys", "*.vxd", "*.ocx", "*.cpl", "*.drv", "*.obj"})) {
+                try {
+                    Console.WriteLine($"분석 중: {file}");
+                    var peInfo = ReadPEHeader(file);
+                    if (peInfo != null) {
+                        csvData.Add(peInfo);
+                    }
+                } catch {
+                    Console.WriteLine($"[오류] 파일 접근 실패: {file}");
                 }
-            } catch {
-                Console.WriteLine($"[오류] 파일 접근 실패: {file}");
             }
+
+            File.WriteAllLines(outputCsv, csvData.ConvertAll(line => string.Join(",", line)));
+            Console.WriteLine($"CSV 저장 완료: {outputCsv}");
         }
 
-        File.WriteAllLines(outputCsv, csvData.ConvertAll(line => string.Join(",", line)));
-        Console.WriteLine($"CSV 저장 완료: {outputCsv}");
     }
 
     //폴더 내 모든 PE 파일을 검색하는 기능 추가
