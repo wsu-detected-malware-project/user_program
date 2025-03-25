@@ -1,0 +1,77 @@
+private void BtnExtractPEFilesAll_Click(object sender, EventArgs e)
+{
+    string outputCsv32 = "pe_info_32bit.csv";
+    string outputCsv64 = "pe_info_64bit.csv";
+    var csvData32 = new ConcurrentBag<string[]>();
+    var csvData64 = new ConcurrentBag<string[]>();
+
+    Console.WriteLine("PE 파일 검색 중...");
+
+    // 모든 드라이브에서 PE 파일 검색
+    var drives = DriveInfo.GetDrives()
+        .Where(d => d.IsReady && Directory.Exists(d.RootDirectory.FullName))
+        .Select(d => d.RootDirectory.FullName)
+        .ToList();
+
+    Parallel.ForEach(drives, drive =>
+    {
+        Console.WriteLine($"Searching in: {drive}");
+        foreach (var file in GetFilesSafely(drive, new[] { "*.exe", "*.dll", "*.sys", "*.ocx", "*.cpl", "*.drv" }))
+        {
+            Console.WriteLine($"Found file: {file}");
+            if (TryReadPEHeader(file, out var peInfo, out var is64Bit))
+            {
+                if (is64Bit)
+                {
+                    csvData64.Add(peInfo);
+                }
+                else
+                {
+                    csvData32.Add(peInfo);
+                }
+            }
+        }
+    });
+
+    SaveCsv32(outputCsv32, csvData32);
+    SaveCsv64(outputCsv64, csvData64);
+}
+
+private void BtnExtractPEFilesLocalOnly_Click(object sender, EventArgs e)
+{
+    string outputCsv32 = "pe_info_local_32bit.csv";
+    string outputCsv64 = "pe_info_local_64bit.csv";
+    var csvData32 = new ConcurrentBag<string[]>();
+    var csvData64 = new ConcurrentBag<string[]>();
+
+    Console.WriteLine("PC 디렉터리에서 PE 파일 검색 중...");
+
+    // 로컬 디스크만 필터링
+    var localDrives = DriveInfo.GetDrives()
+        .Where(d => d.IsReady && d.DriveType == DriveType.Fixed && Directory.Exists(d.RootDirectory.FullName))
+        .Select(d => d.RootDirectory.FullName)
+        .ToList();
+
+    Parallel.ForEach(localDrives, drive =>
+    {
+        Console.WriteLine($"Searching in: {drive}");
+        foreach (var file in GetFilesSafely(drive, new[] { "*.exe", "*.dll", "*.sys", "*.ocx", "*.cpl", "*.drv" }))
+        {
+            Console.WriteLine($"Found file: {file}");
+            if (TryReadPEHeader(file, out var peInfo, out var is64Bit))
+            {
+                if (is64Bit)
+                {
+                    csvData64.Add(peInfo);
+                }
+                else
+                {
+                    csvData32.Add(peInfo);
+                }
+            }
+        }
+    });
+
+    SaveCsv32(outputCsv32, csvData32);
+    SaveCsv64(outputCsv64, csvData64);
+}
