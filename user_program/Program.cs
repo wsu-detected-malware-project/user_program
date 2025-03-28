@@ -1,4 +1,4 @@
-namespace com;
+namespace user_program;
 
 static class Program
 {
