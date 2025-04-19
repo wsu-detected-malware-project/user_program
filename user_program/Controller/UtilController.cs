@@ -30,5 +30,11 @@ namespace user_program.Controller {
             EnvManager.SetMalwareStatus(isMalware);
         }
         #endregion
+
+        #region NotificationHelper
+        public static void ShowWindowsNotification(string title, string content) {
+            NotificationHelper.ShowWindowsNotification(title, content);
+        }
+        #endregion
     }
 }
