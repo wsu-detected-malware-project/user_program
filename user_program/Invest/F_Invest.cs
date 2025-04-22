@@ -6,7 +6,7 @@ namespace user_program.Invest {
             // CSV 헤더 정의
             string[] csvHeader = Csvheader.csvheader;
 
-            string targetDirectory = $@"D:\";
+            string targetDirectory = $@"F:\";
 
             string outputCsv = "pe_info.csv";
             List<string[]> csvData = new List<string[]>();
@@ -49,7 +49,7 @@ namespace user_program.Invest {
         }
         
         public static int TotalFile() {
-            string targetDirectory = $@"D:\";
+            string targetDirectory = $@"F:\";
 
             int totalFiles = GetFile.GetFilesSafely(targetDirectory, new[] { "*.exe", "*.dll", "*.scr", "*.sys", "*.vxd", "*.ocx", "*.cpl", "*.drv", "*.obj" }).Count();
 

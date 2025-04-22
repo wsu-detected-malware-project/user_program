@@ -2,9 +2,12 @@ using System.ComponentModel;
 using Microsoft.Win32;  // 자동 실행 위해 필요
 using DotNetEnv;
 using user_program.Controller;
+using System.Drawing.Drawing2D;
+using System.Drawing.Text; //추가
 
 namespace user_program.FormAll {
-    public partial class Form1 : Form {
+    public partial class Form1 : Form
+    {
         private FormController F_controller = FormController.Singleton;
         private NotifyIcon trayIcon;
         private ContextMenuStrip trayMenu;
@@ -12,7 +15,10 @@ namespace user_program.FormAll {
 
         private string lastRelativeTime = "";
 
-        public Form1() {
+        public Form1()
+        {
+
+
             // 실행 위치 고정
             Environment.CurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
@@ -40,6 +46,8 @@ namespace user_program.FormAll {
             this.Resize += new EventHandler(Form1_Resize);
             this.FormClosing += new FormClosingEventHandler(Form1_FormClosing);
 
+           
+
             // 윈도우 부팅 시 자동 실행 등록
             SetAutoStart(true);
 
@@ -49,24 +57,72 @@ namespace user_program.FormAll {
             this.Activated += new EventHandler(Form1_Activated);
         }
 
-        private void StartAutoUpdateTimer() {
+
+        //버튼 테두리 둥글게
+        private void round_button(Button btn)
+        {
+            int radius = 30;
+
+            btn.Paint += (s, e) =>
+            {
+                using (GraphicsPath path = new GraphicsPath())
+                {
+                    path.AddArc(0, 0, radius, radius, 180, 90);
+                    path.AddArc(btn.Width - radius, 0, radius, radius, 270, 90);
+                    path.AddArc(btn.Width - radius, btn.Height - radius, radius, radius, 0, 90);
+                    path.AddArc(0, btn.Height - radius, radius, radius, 90, 90);
+                    path.CloseFigure();
+                    btn.Region = new Region(path);
+
+                    using (Pen pen = new Pen(Color.Snow, 2))
+                    {
+                        e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+                        e.Graphics.DrawPath(pen, path);
+                    }
+                }
+            };
+        }
+        //텍스트 내 특정 글자 색깔 바꾸기
+        private void HighlightText(RichTextBox box, string fullText, string keyword, Color keywordColor, Color defaultColor)
+        {
+            box.Text = fullText;
+    
+            box.SelectAll();
+            box.SelectionColor = defaultColor;
+
+            int start = fullText.IndexOf(keyword);
+            if (start >= 0)
+            {
+                box.Select(start, keyword.Length);
+                box.SelectionColor = keywordColor;
+            }
+
+            // 선택 해제
+            box.Select(fullText.Length, 0);
+        }
+
+        private void StartAutoUpdateTimer()
+        {
             autoUpdateTimer = new System.Windows.Forms.Timer();
             autoUpdateTimer.Interval = 5000; // 30초마다 갱신
             autoUpdateTimer.Tick += (s, e) => UpdateScanInfoUI();
             autoUpdateTimer.Start();
         }
 
-        private void InitializeTrayIcon() {
+        private void InitializeTrayIcon()
+        {
             trayIcon = new NotifyIcon();
 
             // .ico 경로 가져오기 (.env에서 ICON_PATH 지정, 없으면 기본값 사용)
             string iconPath = Env.GetString("ICON_PATH", Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "pe_checker.ico"));
 
             // 아이콘 로딩 시도 → 실패하면 기본 아이콘으로 대체
-            try {
+            try
+            {
                 trayIcon.Icon = new Icon(iconPath);
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 MessageBox.Show("아이콘 로딩 실패!\n경로: " + iconPath + "\n오류: " + ex.Message);
                 trayIcon.Icon = SystemIcons.Application;
             }
@@ -82,52 +138,66 @@ namespace user_program.FormAll {
             trayIcon.DoubleClick += OnOpen;
         }
 
-        private void OnOpen(object sender, EventArgs e) {
+        private void OnOpen(object sender, EventArgs e)
+        {
             this.Show();
             this.WindowState = FormWindowState.Normal;
         }
 
-        private void OnExit(object sender, EventArgs e) {
+        private void OnExit(object sender, EventArgs e)
+        {
             trayIcon.Visible = false;
             Environment.Exit(0); // 완전 강제 종료
         }
 
-        private void Form1_Resize(object sender, EventArgs e) {
-            if (this.WindowState == FormWindowState.Minimized) {
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Minimized)
+            {
                 this.Hide();
             }
         }
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e) {
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
             e.Cancel = true; // [X] 버튼 눌러도 숨김 처리
             this.Hide();
         }
 
-        private void SetAutoStart(bool enable) {
+        private void SetAutoStart(bool enable)
+        {
             string runKey = @"Software\Microsoft\Windows\CurrentVersion\Run";
             RegistryKey key = Registry.CurrentUser.OpenSubKey(runKey, true);
 
-            if (enable) {
+            if (enable)
+            {
                 key.SetValue("PEAnalyzer", Application.ExecutablePath);
             }
-            else {
+            else
+            {
                 key.DeleteValue("PEAnalyzer", false);
             }
         }
 
+
+
         #region 바 이벤트
         bool mouseDown;
         Point lastlocation;
-        private void lbl_title_MouseDown(object sender, MouseEventArgs e) {
+        private void lbl_title_MouseDown(object sender, MouseEventArgs e)
+        {
             mouseDown = true;
             lastlocation = e.Location;
         }
-        private void lbl_title_MouseUp(object sender, MouseEventArgs e) {
+        private void lbl_title_MouseUp(object sender, MouseEventArgs e)
+        {
             mouseDown = false;
         }
 
-        private void lbl_title_MouseMove(object sender, MouseEventArgs e) {
-            if (mouseDown) {
+        private void lbl_title_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (mouseDown)
+            {
                 this.Location = new Point(
                     (this.Location.X - lastlocation.X) + e.X,
                     (this.Location.Y - lastlocation.Y) + e.Y);
@@ -136,51 +206,59 @@ namespace user_program.FormAll {
             }
         }
 
-        private void btn_min_Click(object sender, MouseEventArgs e) {
+        private void btn_min_Click(object sender, MouseEventArgs e)
+        {
             this.WindowState = FormWindowState.Minimized;
         }
-        private void btn_max_Click(object sender, MouseEventArgs e) {
-            if (this.WindowState == FormWindowState.Normal) {
+        private void btn_max_Click(object sender, MouseEventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Normal)
+            {
                 this.WindowState = FormWindowState.Maximized;
             }
-            else {
+            else
+            {
                 this.WindowState = FormWindowState.Normal;
             }
         }
 
-        private void btn_close_Click(object sender, EventArgs e) {
+        private void btn_close_Click(object sender, EventArgs e)
+        {
             this.Close();
         }
 
-        private void btn_close_Click(object sender, MouseEventArgs e) {
+        private void btn_close_Click(object sender, MouseEventArgs e)
+        {
             this.Close();
         }
 
-        private void lbl_title_Click(object sender, EventArgs e) {
 
-        }
         #endregion
         #region 라벨 출력
 
         //시스템 보안 상태가 안전합니다
-        
+
         [NonSerialized]
         private string _securityState;
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public string Security_State {
+        public string Security_State
+        {
             get { return _securityState; }
-            set {
+            set
+            {
                 _securityState = value.ToString();
-                label2.Text = _securityState;
+                //label2.Text = _securityState;
             }
         }
 
         [NonSerialized]
         private string _recentUpdate;
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public string Recent_Update {
+        public string Recent_Update
+        {
             get { return _recentUpdate; }
-            set {
+            set
+            {
                 _recentUpdate = value.ToString();
                 label3.Text = _recentUpdate;
             }
@@ -189,9 +267,11 @@ namespace user_program.FormAll {
         [NonSerialized]
         private string _recentTest;
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public string Recent_Test {
+        public string Recent_Test
+        {
             get { return _recentTest; }
-            set {
+            set
+            {
                 _recentTest = value.ToString();
                 label4.Text = _recentTest;
             }
@@ -200,9 +280,11 @@ namespace user_program.FormAll {
         [NonSerialized]
         private string _updateVersion;
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public string Update_Version {
+        public string Update_Version
+        {
             get { return _updateVersion; }
-            set {
+            set
+            {
                 _updateVersion = value.ToString();
                 label1.Text = _updateVersion;
             }
@@ -210,18 +292,21 @@ namespace user_program.FormAll {
 
         #endregion
         #region 버튼 이벤트
-        private void Button_Click1(object sender, EventArgs e) {
+        private void Button_Click1(object sender, EventArgs e)
+        {
             F_controller.Form1_button1(this);
         }
 
-        private void Button_Click2(object sender, EventArgs e) {
+        private void Button_Click2(object sender, EventArgs e)
+        {
             F_controller.Form1_button2(this);
-            
+
         }
 
         #endregion
 
-        private void Form1_Load(object sender, EventArgs e) {
+        private void Form1_Load(object sender, EventArgs e)
+        {
             UpdateScanInfoUI();
 
             string EnvPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ".env");
@@ -230,31 +315,45 @@ namespace user_program.FormAll {
             string version = Env.GetString("VERSION", "default_version");
 
             F_controller.Update_Version_1(version);
+
+            round_button(button);
+            round_button(button2);
+
+            HighlightText(richTextBox1, "실시간 검사 On", "On", Color.LimeGreen, Color.Snow);
         }
 
         // 검사 시간 및 악성 여부 UI 갱신
-        public void UpdateScanInfoUI() {
+        public void UpdateScanInfoUI()
+        {
             // 1. .env에서 IS_MALWARE 값을 읽기
             Env.Load(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ".env"));
             string isMalware = Env.GetString("IS_MALWARE", "false");
             bool hasMalware = isMalware.ToLower() == "true";
 
-            Color backgroundColor = hasMalware ? Color.Red : Color.Blue;
-            
-            panel1.BackColor = backgroundColor;
+            string shieldPath1 = Env.GetString("FORM1_IMAGE1", "img/form1_shield1.png");
+            string shieldPath2 = Env.GetString("FORM1_IMAGE2", "img/form1_shield2.png");
 
-            label2.BackColor = backgroundColor;
-            label3.BackColor = backgroundColor;
-            label4.BackColor = backgroundColor;
+            string imagepath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, hasMalware ? shieldPath2 : shieldPath1);
 
-            label2.Text = hasMalware ? "시스템의 보안 상태가 위험합니다" : "시스템의 보안 상태가 안전합니다";
+            if (File.Exists(imagepath))
+            {
+                pictureBox1.Image = Image.FromFile(imagepath);
+                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage; // 필요 시 조정
+            }
+            else
+            {
+                Console.WriteLine($"이미지 파일이 존재하지 않습니다: {imagepath}");
+                pictureBox1.Image = null;
+            }
 
-            string version = Env.GetString("VERSION", "알 수 없음");
+
+                string version = Env.GetString("VERSION", "알 수 없음");
             label3.Text = $"최근 업데이트: {version}";
-            
+
             DateTime? lastScan = UtilController.
             GetLastScanTime();
-            if (lastScan.HasValue) {
+            if (lastScan.HasValue)
+            {
                 string relativeTime = FormatRelativeTime(lastScan.Value);
                 if (relativeTime != lastRelativeTime)
                 {
@@ -262,19 +361,21 @@ namespace user_program.FormAll {
                     lastRelativeTime = relativeTime;
                 }
             }
-            else {
+            else
+            {
                 label4.Text = "검사 이력 없음";
                 lastRelativeTime = "";
             }
 
             // 렌더링 호환성 보장
-            label2.UseCompatibleTextRendering = true;
             label3.UseCompatibleTextRendering = true;
             label4.UseCompatibleTextRendering = true;
+
         }
 
         // 상대 시간 포맷
-        private string FormatRelativeTime(DateTime time) {
+        private string FormatRelativeTime(DateTime time)
+        {
             TimeSpan diff = DateTime.Now - time;
 
             if (diff.TotalMinutes < 1)
@@ -288,12 +389,15 @@ namespace user_program.FormAll {
         }
 
         //다시 돌아왔을때 result.csv 파일을 지우는 코드
-        private void Form1_Activated(object sender, EventArgs e) {
+        private void Form1_Activated(object sender, EventArgs e)
+        {
             string resultPath = Env.GetString("RESULT_PATH", Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "result.csv"));
-            if (File.Exists(resultPath)) {
+            if (File.Exists(resultPath))
+            {
                 File.Delete(resultPath);
                 Console.WriteLine("result.csv 삭제됨");
             }
         }
+
     }
 }

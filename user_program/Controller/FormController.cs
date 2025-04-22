@@ -1,4 +1,5 @@
 using DotNetEnv;
+using System.Windows.Forms;
 using user_program.FormAll;
 
 namespace user_program.Controller{
@@ -108,22 +109,24 @@ namespace user_program.Controller{
         #region form3
         //-------------------------------------form3-------------------------------------
         public void Print_Invest_List2(Form3 parentForm, ListBox listbox, List<string> msg) {
-            Form3_Print_List(parentForm, listbox, msg);
+            Form_Print_List(parentForm, listbox, msg);
         }
 
-        public void Form3_Print_List(Form3 parentForm, ListBox listBox, List<string> msg) {
+        public void Form_Print_List(Form3 parentForm, ListBox listBox, List<string> msg) {
             parentForm.Show();
 
             foreach (var name in msg) {
-                listBox.Items.Add(name);
+                listBox.Items.Add(name); 
             }    
         }
 
         public void Print_Image_Shield1(PictureBox picturebox) {
             LoadImage_Shield1(picturebox);
         }
-        public void Print_Image_Shield2(PictureBox picturebox) {
+        public void Print_Image_Shield2(PictureBox picturebox, Form3 form, ListBox listbox, List<string> malwareNames)
+        {
             LoadImage_Shield2(picturebox);
+            Print_Invest_List2(form, listbox, malwareNames);
         }
         public void LoadImage_Shield1(PictureBox picturebox) {
             string imagePath = Env.GetString("SHIELD_IMAGE1", Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "img", "shield1.jpg"));

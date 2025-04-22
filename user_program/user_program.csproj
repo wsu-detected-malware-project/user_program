@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows10.0.17763.0</TargetFramework>
-    <AssemblyName>pe_analyzer</AssemblyName>
+    <AssemblyName>WSU_Malware</AssemblyName>
     <Nullable>disable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -24,12 +24,6 @@
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
   </ItemGroup>
-	
-  <ItemGroup>
-	  <None Update=".env">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-  </ItemGroup>
 
   <ItemGroup>
     <None Update="img\shield1.jpg">
@@ -40,8 +34,12 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-	  <Exec Command="tasklist | find /i &quot;pe_analyzer.exe&quot; &gt;nul&#xD;&#xA;if not errorlevel 1 taskkill /f /im pe_analyzer.exe &gt;nul 2&gt;&amp;1&#xD;&#xA;exit 0" />
+	  <Exec Command="tasklist | find /i &quot;WSU_Malware.exe&quot; &gt;nul&#xD;&#xA;if not errorlevel 1 taskkill /f /im WSU_Malware.exe &gt;nul 2&gt;&amp;1&#xD;&#xA;exit 0" />
   </Target>
 
 </Project>

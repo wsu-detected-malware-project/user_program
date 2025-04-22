@@ -27,21 +27,24 @@ namespace user_program.FormAll {
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             btn_close = new Button();
             btn_max = new Button();
             btn_min = new Button();
             tableLayoutPanel1 = new TableLayoutPanel();
             lbl_title = new Label();
-            flowLayoutPanel1 = new FlowLayoutPanel();
-            Button = new Button();
+            button = new Button();
             button2 = new Button();
             label1 = new Label();
-            label2 = new Label();
             label3 = new Label();
             label4 = new Label();
-            panel1 = new Panel();
+            verticalpannel = new Panel();
+            pictureBox1 = new PictureBox();
+            richText = new RichTextBox();
+            richTextBox1 = new RichTextBox();
+            horizonpanel = new Panel();
             tableLayoutPanel1.SuspendLayout();
-            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // btn_close
@@ -52,10 +55,10 @@ namespace user_program.FormAll {
             btn_close.FlatStyle = FlatStyle.Flat;
             btn_close.Font = new Font("굴림", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 129);
             btn_close.ForeColor = SystemColors.Control;
-            btn_close.Location = new Point(768, 4);
+            btn_close.Location = new Point(595, 4);
             btn_close.Margin = new Padding(3, 4, 3, 4);
             btn_close.Name = "btn_close";
-            btn_close.Size = new Size(29, 42);
+            btn_close.Size = new Size(29, 34);
             btn_close.TabIndex = 3;
             btn_close.Text = "x";
             btn_close.UseVisualStyleBackColor = false;
@@ -69,10 +72,10 @@ namespace user_program.FormAll {
             btn_max.FlatStyle = FlatStyle.Flat;
             btn_max.Font = new Font("굴림", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 129);
             btn_max.ForeColor = SystemColors.Control;
-            btn_max.Location = new Point(733, 4);
+            btn_max.Location = new Point(560, 4);
             btn_max.Margin = new Padding(3, 4, 3, 4);
             btn_max.Name = "btn_max";
-            btn_max.Size = new Size(29, 42);
+            btn_max.Size = new Size(29, 34);
             btn_max.TabIndex = 2;
             btn_max.Text = "ㅁ";
             btn_max.UseVisualStyleBackColor = false;
@@ -87,10 +90,10 @@ namespace user_program.FormAll {
             btn_min.FlatStyle = FlatStyle.Flat;
             btn_min.Font = new Font("굴림", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 129);
             btn_min.ForeColor = SystemColors.Control;
-            btn_min.Location = new Point(698, 4);
+            btn_min.Location = new Point(525, 4);
             btn_min.Margin = new Padding(3, 4, 3, 4);
             btn_min.Name = "btn_min";
-            btn_min.Size = new Size(29, 42);
+            btn_min.Size = new Size(29, 34);
             btn_min.TabIndex = 1;
             btn_min.Text = "-";
             btn_min.UseVisualStyleBackColor = false;
@@ -98,7 +101,7 @@ namespace user_program.FormAll {
             // 
             // tableLayoutPanel1
             // 
-            tableLayoutPanel1.BackColor = SystemColors.GrayText;
+            tableLayoutPanel1.BackColor = Color.FromArgb(24, 24, 24);
             tableLayoutPanel1.ColumnCount = 4;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 35F));
@@ -114,7 +117,7 @@ namespace user_program.FormAll {
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(800, 50);
+            tableLayoutPanel1.Size = new Size(627, 42);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // lbl_title
@@ -122,54 +125,41 @@ namespace user_program.FormAll {
             lbl_title.AutoSize = true;
             lbl_title.BackColor = Color.Transparent;
             lbl_title.Dock = DockStyle.Bottom;
-            lbl_title.Font = new Font("굴림", 18F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            lbl_title.Font = new Font("서울한강체 EB", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 129);
             lbl_title.ForeColor = SystemColors.Control;
-            lbl_title.Location = new Point(3, 26);
+            lbl_title.Location = new Point(3, 15);
             lbl_title.Name = "lbl_title";
-            lbl_title.Size = new Size(689, 24);
+            lbl_title.Size = new Size(516, 27);
             lbl_title.TabIndex = 4;
-            lbl_title.Text = "WSU malware";
-            lbl_title.Click += lbl_title_Click;
+            lbl_title.Text = "WSU MALWARE";
             lbl_title.MouseDown += lbl_title_MouseDown;
             lbl_title.MouseMove += lbl_title_MouseMove;
             lbl_title.MouseUp += lbl_title_MouseUp;
             // 
-            // flowLayoutPanel1
+            // button
             // 
-            flowLayoutPanel1.BackColor = Color.LightGray;
-            flowLayoutPanel1.Dock = DockStyle.Top;
-            flowLayoutPanel1.Location = new Point(0, 50);
-            flowLayoutPanel1.Margin = new Padding(3, 4, 3, 4);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(800, 4);
-            flowLayoutPanel1.TabIndex = 1;
-            // 
-            // Button
-            // 
-            Button.BackColor = Color.Azure;
-            Button.FlatAppearance.BorderColor = Color.Black;
-            Button.FlatAppearance.BorderSize = 3;
-            Button.FlatStyle = FlatStyle.Flat;
-            Button.Font = new Font("맑은 고딕", 30F, FontStyle.Regular, GraphicsUnit.Point, 129);
-            Button.Location = new Point(472, 132);
-            Button.Name = "Button";
-            Button.Size = new Size(240, 96);
-            Button.TabIndex = 3;
-            Button.Text = "빠른 검사";
-            Button.UseVisualStyleBackColor = false;
-            Button.Click += Button_Click1;
+            button.BackColor = Color.FromArgb(24, 24, 24);
+            button.FlatStyle = FlatStyle.Flat;
+            button.Font = new Font("서울한강체 EB", 14.2499981F, FontStyle.Regular, GraphicsUnit.Point, 129);
+            button.ForeColor = Color.Snow;
+            button.Location = new Point(52, 279);
+            button.Name = "button";
+            button.Size = new Size(202, 86);
+            button.TabIndex = 2;
+            button.Text = "빠른 검사";
+            button.UseVisualStyleBackColor = false;
+            button.Click += Button_Click1;
             // 
             // button2
             // 
-            button2.BackColor = Color.Azure;
-            button2.FlatAppearance.BorderColor = Color.Black;
-            button2.FlatAppearance.BorderSize = 3;
+            button2.BackColor = Color.FromArgb(24, 24, 24);
             button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("맑은 고딕", 30F);
-            button2.Location = new Point(474, 298);
+            button2.Font = new Font("서울한강체 EB", 14.2499981F, FontStyle.Regular, GraphicsUnit.Point, 129);
+            button2.ForeColor = Color.Snow;
+            button2.Location = new Point(52, 390);
             button2.Name = "button2";
-            button2.Size = new Size(238, 97);
-            button2.TabIndex = 4;
+            button2.Size = new Size(202, 88);
+            button2.TabIndex = 3;
             button2.Text = "정밀 검사";
             button2.UseVisualStyleBackColor = false;
             button2.Click += Button_Click2;
@@ -177,33 +167,23 @@ namespace user_program.FormAll {
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("맑은 고딕", 15F);
-            label1.Location = new Point(609, 449);
+            label1.Font = new Font("맑은 고딕", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            label1.ForeColor = Color.Snow;
+            label1.Location = new Point(525, 474);
             label1.Name = "label1";
-            label1.Size = new Size(166, 28);
+            label1.Size = new Size(133, 20);
             label1.TabIndex = 7;
             label1.Text = "버전 : 2025.03.16";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.BackColor = Color.Transparent;
-            label2.Font = new Font("맑은 고딕", 15F, FontStyle.Bold, GraphicsUnit.Point, 129);
-            label2.ForeColor = Color.Snow;
-            label2.Location = new Point(15, 19);
-            label2.Name = "label2";
-            label2.Size = new Size(313, 28);
-            label2.TabIndex = 9;
-            label2.Text = "시스템의 보안 상태가 안전합니다";
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.BackColor = Color.Transparent;
+            label3.Font = new Font("서울한강체 EB", 17.9999981F, FontStyle.Regular, GraphicsUnit.Point, 129);
             label3.ForeColor = Color.Snow;
-            label3.Location = new Point(15, 64);
+            label3.Location = new Point(330, 383);
             label3.Name = "label3";
-            label3.Size = new Size(134, 15);
+            label3.Size = new Size(239, 24);
             label3.TabIndex = 10;
             label3.Text = "최근 업데이트 : 조금 전";
             // 
@@ -211,37 +191,77 @@ namespace user_program.FormAll {
             // 
             label4.AutoSize = true;
             label4.BackColor = Color.Transparent;
+            label4.Font = new Font("서울한강체 EB", 17.9999981F, FontStyle.Regular, GraphicsUnit.Point, 129);
             label4.ForeColor = Color.Snow;
-            label4.Location = new Point(15, 91);
+            label4.Location = new Point(330, 421);
             label4.Name = "label4";
-            label4.Size = new Size(110, 15);
+            label4.Size = new Size(198, 24);
             label4.TabIndex = 11;
             label4.Text = "최근 검사 : 조금 전";
             // 
-            // panel1
+            // verticalpannel
             // 
-            panel1.BackColor = Color.Cyan;
-            panel1.Controls.Add(label4);
-            panel1.Controls.Add(label2);
-            panel1.Controls.Add(label3);
-            panel1.Location = new Point(73, 132);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(349, 263);
-            panel1.TabIndex = 12;
+            verticalpannel.BackColor = Color.Gray;
+            verticalpannel.Location = new Point(307, 274);
+            verticalpannel.Name = "verticalpannel";
+            verticalpannel.Size = new Size(1, 220);
+            verticalpannel.TabIndex = 4;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Location = new Point(186, 52);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(245, 221);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 2;
+            pictureBox1.TabStop = false;
+            // 
+            // richText
+            // 
+            richText.Location = new Point(0, 0);
+            richText.Name = "richText";
+            richText.Size = new Size(100, 96);
+            richText.TabIndex = 0;
+            richText.Text = "";
+            // 
+            // richTextBox1
+            // 
+            richTextBox1.BackColor = Color.FromArgb(24, 24, 24);
+            richTextBox1.BorderStyle = BorderStyle.None;
+            richTextBox1.Font = new Font("서울한강체 EB", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 129);
+            richTextBox1.ForeColor = Color.Snow;
+            richTextBox1.Location = new Point(330, 294);
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.Size = new Size(217, 44);
+            richTextBox1.TabIndex = 15;
+            richTextBox1.Text = "실시간 검사 On";
+            // 
+            // horizonpanel
+            // 
+            horizonpanel.BackColor = Color.Snow;
+            horizonpanel.Location = new Point(0, 45);
+            horizonpanel.Name = "horizonpanel";
+            horizonpanel.Size = new Size(625, 1);
+            horizonpanel.TabIndex = 16;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Azure;
-            ClientSize = new Size(800, 500);
+            BackColor = Color.FromArgb(26, 26, 26);
+            ClientSize = new Size(627, 500);
+            Controls.Add(horizonpanel);
+            Controls.Add(richTextBox1);
+            Controls.Add(pictureBox1);
+            Controls.Add(verticalpannel);
+            Controls.Add(label4);
             Controls.Add(label1);
             Controls.Add(button2);
-            Controls.Add(Button);
-            Controls.Add(flowLayoutPanel1);
+            Controls.Add(label3);
+            Controls.Add(button);
             Controls.Add(tableLayoutPanel1);
-            Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 4, 3, 4);
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
@@ -250,8 +270,7 @@ namespace user_program.FormAll {
             Load += Form1_Load;
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -262,13 +281,16 @@ namespace user_program.FormAll {
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label lbl_title;
         private System.Windows.Forms.Button btn_min;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private Button Button;
+        private Button button;
         private Button button2;
         private Label label1;
-        private Label label2;
         private Label label3;
         private Label label4;
-        private Panel panel1;
+        private Panel verticalpannel;
+        private PictureBox pictureBox1;
+        private RichTextBox richText;
+        private RichTextBox richTextBox1;
+        private Panel horizonpanel;
+        //private Panel verticalDivider;
     }
 }

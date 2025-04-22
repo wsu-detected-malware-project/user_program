@@ -30,8 +30,10 @@ namespace user_program.FormAll {
         ///  Required method for Designer support - do not modify
         ///  the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
+        private void InitializeComponent()
+        {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             progressBar1 = new ProgressBar();
             timer1 = new System.Windows.Forms.Timer(components);
             label2 = new Label();
@@ -46,6 +48,7 @@ namespace user_program.FormAll {
             panel2 = new Panel();
             tableLayoutPanel2 = new TableLayoutPanel();
             tableLayoutPanel3 = new TableLayoutPanel();
+            label1 = new Label();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -55,11 +58,12 @@ namespace user_program.FormAll {
             // 
             // progressBar1
             // 
+            progressBar1.BackColor = Color.Black;
             progressBar1.Dock = DockStyle.Fill;
             progressBar1.Location = new Point(1, 1);
             progressBar1.Margin = new Padding(0);
             progressBar1.Name = "progressBar1";
-            progressBar1.Size = new Size(718, 20);
+            progressBar1.Size = new Size(562, 20);
             progressBar1.TabIndex = 5;
             // 
             // timer1
@@ -70,9 +74,11 @@ namespace user_program.FormAll {
             // 
             label2.AutoSize = true;
             label2.Dock = DockStyle.Right;
-            label2.Location = new Point(191, 0);
+            label2.Font = new Font("서울한강체 EB", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 129);
+            label2.ForeColor = Color.Snow;
+            label2.Location = new Point(202, 0);
             label2.Name = "label2";
-            label2.Size = new Size(104, 20);
+            label2.Size = new Size(93, 21);
             label2.TabIndex = 8;
             label2.Text = "버전 : 2025.03.18";
             // 
@@ -84,10 +90,10 @@ namespace user_program.FormAll {
             btn_close.FlatStyle = FlatStyle.Flat;
             btn_close.Font = new Font("굴림", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 129);
             btn_close.ForeColor = SystemColors.Control;
-            btn_close.Location = new Point(768, 4);
+            btn_close.Location = new Point(595, 4);
             btn_close.Margin = new Padding(3, 4, 3, 4);
             btn_close.Name = "btn_close";
-            btn_close.Size = new Size(29, 42);
+            btn_close.Size = new Size(29, 34);
             btn_close.TabIndex = 3;
             btn_close.Text = "x";
             btn_close.UseVisualStyleBackColor = false;
@@ -101,10 +107,10 @@ namespace user_program.FormAll {
             btn_max.FlatStyle = FlatStyle.Flat;
             btn_max.Font = new Font("굴림", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 129);
             btn_max.ForeColor = SystemColors.Control;
-            btn_max.Location = new Point(733, 4);
+            btn_max.Location = new Point(560, 4);
             btn_max.Margin = new Padding(3, 4, 3, 4);
             btn_max.Name = "btn_max";
-            btn_max.Size = new Size(29, 42);
+            btn_max.Size = new Size(29, 34);
             btn_max.TabIndex = 2;
             btn_max.Text = "ㅁ";
             btn_max.UseVisualStyleBackColor = false;
@@ -119,10 +125,10 @@ namespace user_program.FormAll {
             btn_min.FlatStyle = FlatStyle.Flat;
             btn_min.Font = new Font("굴림", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 129);
             btn_min.ForeColor = SystemColors.Control;
-            btn_min.Location = new Point(698, 4);
+            btn_min.Location = new Point(525, 4);
             btn_min.Margin = new Padding(3, 4, 3, 4);
             btn_min.Name = "btn_min";
-            btn_min.Size = new Size(29, 42);
+            btn_min.Size = new Size(29, 34);
             btn_min.TabIndex = 1;
             btn_min.Text = "-";
             btn_min.UseVisualStyleBackColor = false;
@@ -130,7 +136,7 @@ namespace user_program.FormAll {
             // 
             // tableLayoutPanel1
             // 
-            tableLayoutPanel1.BackColor = SystemColors.GrayText;
+            tableLayoutPanel1.BackColor = Color.FromArgb(24, 24, 24);
             tableLayoutPanel1.ColumnCount = 4;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 35F));
@@ -146,7 +152,7 @@ namespace user_program.FormAll {
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(800, 50);
+            tableLayoutPanel1.Size = new Size(627, 42);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // lbl_title
@@ -154,26 +160,25 @@ namespace user_program.FormAll {
             lbl_title.AutoSize = true;
             lbl_title.BackColor = Color.Transparent;
             lbl_title.Dock = DockStyle.Bottom;
-            lbl_title.Font = new Font("굴림", 18F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            lbl_title.Font = new Font("서울한강체 EB", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 129);
             lbl_title.ForeColor = SystemColors.Control;
-            lbl_title.Location = new Point(3, 26);
+            lbl_title.Location = new Point(3, 15);
             lbl_title.Name = "lbl_title";
-            lbl_title.Size = new Size(689, 24);
+            lbl_title.Size = new Size(516, 27);
             lbl_title.TabIndex = 4;
-            lbl_title.Text = "WSU malware";
-            lbl_title.Click += lbl_title_Click;
+            lbl_title.Text = "WSU MALWARE";
             lbl_title.MouseDown += lbl_title_MouseDown;
             lbl_title.MouseMove += lbl_title_MouseMove;
             lbl_title.MouseUp += lbl_title_MouseUp;
             // 
             // flowLayoutPanel1
             // 
-            flowLayoutPanel1.BackColor = Color.LightGray;
+            flowLayoutPanel1.BackColor = Color.Snow;
             flowLayoutPanel1.Dock = DockStyle.Top;
-            flowLayoutPanel1.Location = new Point(0, 50);
+            flowLayoutPanel1.Location = new Point(0, 42);
             flowLayoutPanel1.Margin = new Padding(3, 4, 3, 4);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(800, 4);
+            flowLayoutPanel1.Size = new Size(627, 1);
             flowLayoutPanel1.TabIndex = 1;
             // 
             // panel1
@@ -181,21 +186,23 @@ namespace user_program.FormAll {
             panel1.BackColor = Color.Black;
             panel1.Controls.Add(listBox1);
             panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(40, 52);
+            panel1.Location = new Point(31, 53);
             panel1.Margin = new Padding(0);
             panel1.Name = "panel1";
             panel1.Padding = new Padding(1);
-            panel1.Size = new Size(720, 370);
+            panel1.Size = new Size(564, 379);
             panel1.TabIndex = 10;
             // 
             // listBox1
             // 
-            listBox1.BackColor = SystemColors.Control;
+            listBox1.BackColor = Color.SlateGray;
+            listBox1.BorderStyle = BorderStyle.None;
+            listBox1.Font = new Font("서울한강체 EB", 11.249999F, FontStyle.Regular, GraphicsUnit.Point, 129);
             listBox1.FormattingEnabled = true;
             listBox1.ItemHeight = 15;
             listBox1.Location = new Point(0, 0);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(723, 379);
+            listBox1.Size = new Size(564, 375);
             listBox1.TabIndex = 0;
             // 
             // panel2
@@ -203,15 +210,16 @@ namespace user_program.FormAll {
             panel2.BackColor = Color.Black;
             panel2.Controls.Add(progressBar1);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(40, 22);
+            panel2.Location = new Point(31, 22);
             panel2.Margin = new Padding(0);
             panel2.Name = "panel2";
             panel2.Padding = new Padding(1);
-            panel2.Size = new Size(720, 22);
+            panel2.Size = new Size(564, 22);
             panel2.TabIndex = 11;
             // 
             // tableLayoutPanel2
             // 
+            tableLayoutPanel2.BackColor = Color.FromArgb(26, 26, 26);
             tableLayoutPanel2.ColumnCount = 3;
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5F));
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 90F));
@@ -220,7 +228,7 @@ namespace user_program.FormAll {
             tableLayoutPanel2.Controls.Add(panel1, 1, 3);
             tableLayoutPanel2.Controls.Add(tableLayoutPanel3, 1, 4);
             tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(0, 54);
+            tableLayoutPanel2.Location = new Point(0, 43);
             tableLayoutPanel2.Margin = new Padding(2);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 5;
@@ -229,7 +237,7 @@ namespace user_program.FormAll {
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 2F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 83F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 5F));
-            tableLayoutPanel2.Size = new Size(800, 446);
+            tableLayoutPanel2.Size = new Size(627, 457);
             tableLayoutPanel2.TabIndex = 12;
             tableLayoutPanel2.Paint += tableLayoutPanel2_Paint;
             // 
@@ -240,25 +248,35 @@ namespace user_program.FormAll {
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel3.Controls.Add(label2, 1, 0);
             tableLayoutPanel3.Dock = DockStyle.Right;
-            tableLayoutPanel3.Location = new Point(460, 424);
+            tableLayoutPanel3.Location = new Point(295, 434);
             tableLayoutPanel3.Margin = new Padding(2);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 1;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel3.Size = new Size(298, 20);
+            tableLayoutPanel3.Size = new Size(298, 21);
             tableLayoutPanel3.TabIndex = 12;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(0, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(39, 15);
+            label1.TabIndex = 0;
+            label1.Text = "label1";
             // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Azure;
-            ClientSize = new Size(800, 500);
+            BackColor = Color.FromArgb(26, 26, 26);
+            ClientSize = new Size(627, 500);
             Controls.Add(tableLayoutPanel2);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(tableLayoutPanel1);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 4, 3, 4);
             Name = "Form2";
             StartPosition = FormStartPosition.CenterScreen;
@@ -279,10 +297,10 @@ namespace user_program.FormAll {
 
         private System.Windows.Forms.Button btn_close;
         private System.Windows.Forms.Button btn_max;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label lbl_title;
         private System.Windows.Forms.Button btn_min;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Timer timer1;
         //private System.Windows.Forms.Button button1;
@@ -292,6 +310,7 @@ namespace user_program.FormAll {
         private TableLayoutPanel tableLayoutPanel2;
         private TableLayoutPanel tableLayoutPanel3;
         private ListBox listBox1;
+        private Label label1;
     }
 }
 
