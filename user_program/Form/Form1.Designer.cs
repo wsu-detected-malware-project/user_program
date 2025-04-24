@@ -1,4 +1,4 @@
-﻿﻿using user_program.FormAll;
+﻿using user_program.FormAll;
 
 namespace user_program.FormAll {
     partial class Form1 {
@@ -125,11 +125,11 @@ namespace user_program.FormAll {
             lbl_title.AutoSize = true;
             lbl_title.BackColor = Color.Transparent;
             lbl_title.Dock = DockStyle.Bottom;
-            lbl_title.Font = new Font("서울한강체 EB", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 129);
+            lbl_title.Font = new Font("Microsoft Sans Serif", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 129);
             lbl_title.ForeColor = SystemColors.Control;
-            lbl_title.Location = new Point(3, 15);
+            lbl_title.Location = new Point(3, 11);
             lbl_title.Name = "lbl_title";
-            lbl_title.Size = new Size(516, 27);
+            lbl_title.Size = new Size(516, 31);
             lbl_title.TabIndex = 4;
             lbl_title.Text = "WSU MALWARE";
             lbl_title.MouseDown += lbl_title_MouseDown;
@@ -140,7 +140,7 @@ namespace user_program.FormAll {
             // 
             button.BackColor = Color.FromArgb(24, 24, 24);
             button.FlatStyle = FlatStyle.Flat;
-            button.Font = new Font("서울한강체 EB", 14.2499981F, FontStyle.Regular, GraphicsUnit.Point, 129);
+            button.Font = new Font("Microsoft Sans Serif", 14.2499981F, FontStyle.Regular, GraphicsUnit.Point, 129);
             button.ForeColor = Color.Snow;
             button.Location = new Point(52, 279);
             button.Name = "button";
@@ -154,7 +154,7 @@ namespace user_program.FormAll {
             // 
             button2.BackColor = Color.FromArgb(24, 24, 24);
             button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("서울한강체 EB", 14.2499981F, FontStyle.Regular, GraphicsUnit.Point, 129);
+            button2.Font = new Font("Microsoft Sans Serif", 14.2499981F, FontStyle.Regular, GraphicsUnit.Point, 129);
             button2.ForeColor = Color.Snow;
             button2.Location = new Point(52, 390);
             button2.Name = "button2";
@@ -169,7 +169,7 @@ namespace user_program.FormAll {
             label1.AutoSize = true;
             label1.Font = new Font("맑은 고딕", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 129);
             label1.ForeColor = Color.Snow;
-            label1.Location = new Point(525, 474);
+            label1.Location = new Point(494, 474);
             label1.Name = "label1";
             label1.Size = new Size(133, 20);
             label1.TabIndex = 7;
@@ -179,11 +179,11 @@ namespace user_program.FormAll {
             // 
             label3.AutoSize = true;
             label3.BackColor = Color.Transparent;
-            label3.Font = new Font("서울한강체 EB", 17.9999981F, FontStyle.Regular, GraphicsUnit.Point, 129);
+            label3.Font = new Font("Microsoft Sans Serif", 15.9999981F, FontStyle.Regular, GraphicsUnit.Point, 129);
             label3.ForeColor = Color.Snow;
             label3.Location = new Point(330, 383);
             label3.Name = "label3";
-            label3.Size = new Size(239, 24);
+            label3.Size = new Size(195, 26);
             label3.TabIndex = 10;
             label3.Text = "최근 업데이트 : 조금 전";
             // 
@@ -191,11 +191,11 @@ namespace user_program.FormAll {
             // 
             label4.AutoSize = true;
             label4.BackColor = Color.Transparent;
-            label4.Font = new Font("서울한강체 EB", 17.9999981F, FontStyle.Regular, GraphicsUnit.Point, 129);
+            label4.Font = new Font("Microsoft Sans Serif", 15.9999981F, FontStyle.Regular, GraphicsUnit.Point, 129);
             label4.ForeColor = Color.Snow;
             label4.Location = new Point(330, 421);
             label4.Name = "label4";
-            label4.Size = new Size(198, 24);
+            label4.Size = new Size(161, 26);
             label4.TabIndex = 11;
             label4.Text = "최근 검사 : 조금 전";
             // 
@@ -226,9 +226,9 @@ namespace user_program.FormAll {
             // 
             // richTextBox1
             // 
-            richTextBox1.BackColor = Color.FromArgb(24, 24, 24);
+            richTextBox1.BackColor = Color.FromArgb(26, 26, 26);
             richTextBox1.BorderStyle = BorderStyle.None;
-            richTextBox1.Font = new Font("서울한강체 EB", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 129);
+            richTextBox1.Font = new Font("Microsoft Sans Serif", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 129);
             richTextBox1.ForeColor = Color.Snow;
             richTextBox1.Location = new Point(330, 294);
             richTextBox1.Name = "richTextBox1";
