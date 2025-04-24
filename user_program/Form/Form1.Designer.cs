@@ -1,4 +1,4 @@
-﻿using user_program.FormAll;
+using user_program.FormAll;
 
 namespace user_program.FormAll {
     partial class Form1 {
@@ -169,7 +169,7 @@ namespace user_program.FormAll {
             label1.AutoSize = true;
             label1.Font = new Font("맑은 고딕", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 129);
             label1.ForeColor = Color.Snow;
-            label1.Location = new Point(494, 474);
+            label1.Location = new Point(494, 471);
             label1.Name = "label1";
             label1.Size = new Size(133, 20);
             label1.TabIndex = 7;
