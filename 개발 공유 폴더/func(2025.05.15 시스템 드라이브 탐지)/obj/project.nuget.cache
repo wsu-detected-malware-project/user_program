@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "lW23y1xf4PM=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\pth81\\Desktop\\func(시스템 드라이브 탐지)\\func.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\pth81\\.nuget\\packages\\system.codedom\\9.0.4\\system.codedom.9.0.4.nupkg.sha512",
+    "C:\\Users\\pth81\\.nuget\\packages\\system.management\\9.0.4\\system.management.9.0.4.nupkg.sha512"
+  ],
+  "logs": []
+}
